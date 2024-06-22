@@ -18,7 +18,7 @@ if (pinAns.atmPin === pin) {
             name: "methods",
             message: "select one",
             type: "list",
-            choices: ["Check balance", "With draw", "Deposit"]
+            choices: ["Check balance", "With draw", "Deposit", "Exit"]
         }
     ]);
     if (methodAns.methods === "With draw") {
@@ -41,17 +41,21 @@ if (pinAns.atmPin === pin) {
     else if (methodAns.methods === "Check balance") {
         console.log(chalk.bgGray(`"Your current balance is" ${myBalance}`));
     }
-    let depositAmount = await inquirer.prompt([
-        {
-            name: "deposit",
-            message: "Enter the amount to deposit",
-            type: "number"
+    if (methodAns.methods === "Deposit") {
+        let depositAmount = await inquirer.prompt([
+            {
+                name: "deposit",
+                message: "Enter the amount to deposit",
+                type: "number"
+            }
+        ]);
+        if (myBalance += depositAmount.deposit) {
+            console.log(chalk.yellow(`${depositAmount.deposit} "Deposit successfully"`));
+            console.log(chalk.bgYellow(`"Your current balance is" ${myBalance}`));
         }
-    ]);
-    if (myBalance += depositAmount.deposit) {
-        console.log(chalk.yellow(`${depositAmount.deposit} "Deposit successfully"`));
-        console.log(chalk.bgYellow(`"Your current balance is" ${myBalance}`));
     }
+    else if (methodAns.methods === "Exit")
+        console.log(chalk.cyanBright("Thank you"));
 }
 else {
     console.log(chalk.bgRed("Incorrect pin"));

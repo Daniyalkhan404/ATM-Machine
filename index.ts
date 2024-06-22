@@ -8,6 +8,8 @@ let myBalance = 10000
 
 let pin = 1234
 
+
+
 let pinAns =await inquirer.prompt(
     [
         {
@@ -28,11 +30,13 @@ let methodAns =await inquirer.prompt(
             name:"methods",
             message:"select one",
             type:"list",
-            choices:["Check balance","With draw","Deposit"]
+            choices:["Check balance","With draw","Deposit","Exit"]
         }
 
     ]
 );
+
+
 
 if (methodAns.methods === "With draw") {
 
@@ -54,11 +58,16 @@ else{
     myBalance -= amountAns.amount
     console.log(chalk.yellow(`${amountAns.amount} "Withdrawn successfully"`));
     console.log(chalk.bgYellow(`"Your remaining balance is" ${myBalance}`));
+    
 }
 
 }else if (methodAns.methods === "Check balance") {
     console.log(chalk.bgGray(`"Your current balance is" ${myBalance}`));
 }
+
+if (methodAns.methods === "Deposit") {
+    
+
 
 let depositAmount =await inquirer.prompt(
     [
@@ -73,9 +82,16 @@ let depositAmount =await inquirer.prompt(
 if (myBalance += depositAmount.deposit) {
     console.log(chalk.yellow(`${depositAmount.deposit} "Deposit successfully"`));
     console.log(chalk.bgYellow(`"Your current balance is" ${myBalance}`));
+
 }
 
 }
+else if
+    (methodAns.methods === "Exit")
+    console.log(chalk.cyanBright("Thank you"))
+    
+}
+
 else {
 console.log(chalk.bgRed("Incorrect pin"));
 }

@@ -1,6 +1,6 @@
 {
-  "name": "dk-atm-machine",
-  "version": "1.0.3",
+  "name": "dk-404-atm-machine",
+  "version": "1.2.4",
   "description": "Atm Machine with TypeScript, Node.js, inquirer and chalk",
   "main": "index.js",
   "type": "module",
